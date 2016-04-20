@@ -1,0 +1,21 @@
+{
+  "name": "bond-street",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server.js localhost 8080"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "express": "^4.13.4",
+    "google-trends-api": "^1.2.2",
+    "nodemon": "^1.9.1",
+    "oauth": "^0.9.12",
+    "request-promise": "^3.0.0",
+    "yelp": "^1.0.1"
+  }
+}
