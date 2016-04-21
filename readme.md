@@ -17,6 +17,9 @@ $ cd extra-credit
 $ npm install
 ```
 
+The program uses several APIs that require authentification.  Normally, I would set up my keys and secrets as environment variables.  However, to ensure ease of use, I have put them into a file (env-variables), and used those variables instead.
+
+
 ### Running the program
 Input business data using the command line:
 ```sh
@@ -61,3 +64,11 @@ This 'more is better' aproach gives large advantages to businesses in urban sett
 
 ***Next Steps***
 > I wanted to analyze data about the cities and industries of businesses using government census data. (ex: is the anual average revinue in the city or industry rising from year to year, how much is the average rent, is there violence or economic/political instability in the area...)
+
+
+  [yelp]: <http://www.yelp.com/developers/documentation/v2/search_api>
+   [node-yelp]: <https://github.com/olalonde/node-yelp>
+   [twitter]: <https://dev.twitter.com/rest/reference/get/search/tweets>
+   [glassdoor]: <https://www.glassdoor.com/developer/index.htm>
+   [google-trends]: <https://www.npmjs.com/package/google-trends-api>
+   [node]: <https://docs.npmjs.com/getting-started/installing-node>s
