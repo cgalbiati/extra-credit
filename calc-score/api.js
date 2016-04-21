@@ -6,7 +6,7 @@ var Promise = require('bluebird');
 
 //replacing process.env variables for ease of use for you
 //normally, I would keep these keys as env variables
-var env = require('./env-variables');
+var env = require('../env-variables');
 
 //API keys and secrets
 var TWITTER_KEY = env.TWITTER_KEY;
@@ -55,16 +55,13 @@ function yelpSearch(params){
     //data contains meta info and an array of bunsinesses
     //verify business using address
     var found;
-    // console.log('data', data)
     data.businesses.some(function(business, idx){
       //TODO: determine if similar address and name
       if(business.location.address[0] === params.location.address) {
         found = business;
-        // console.log('found it', business)
         return true;
       }
     });
-    console.log('got yelp data')
     return found;
   })
   .catch(function(err){
@@ -104,7 +101,6 @@ function twitter(params){
     return twitterReq(url);
   })
   .then(function(data){ 
-    console.log('got twitter data')
     return {pos: data[0], neg: data[1], all: data[2]};
   })
   .catch(function(err){
@@ -122,9 +118,6 @@ function twitterReq(url){
       function (error, data, response){
         try {
           data = JSON.parse(data);
-          // console.log(url, '\n', data.statuses.length, '\n');
-          // console.log(JSON.stringify(data, 0, 2))
-          // console.log('got twitter data')
           fulfill(data);
         } catch (err) {
           console.error('error getting Twitter data', error);
@@ -142,7 +135,9 @@ function glassdoor(params){
   var name = replaceSpace(params.name, '-');
   var city = replaceSpace(params.location.city, '-');
 
-  var queryString = '&q=' + name + '&city=' + city + '&state=' + params.location.state + '&country=' + params.location.country;
+  var queryString = '&q=' + name + '&city=' + city;
+  if (params.location.state) queryString += '&state=' + params.location.state;
+  queryString += '&country=' + params.location.country;
 
   //build api url with auth
   //these don't have to be accurate
@@ -160,13 +155,10 @@ function glassdoor(params){
   };
   return rp(options)
   .then(function(res){
-    // console.log('got it', JSON.stringify(res, null, 2))
-    // console.log('got glass door data', JSON.stringify(res, 0, 1))
     //res has key employers (and others with metadata)
 
     var foundBusiness = null;  
 
-    console.log('length', res.response.employers.length)
     //if one business is found return it if website matches or no site
     if (res.response.employers && res.response.employers.length === 1) {
       if (params.website) {
@@ -203,12 +195,10 @@ function glassdoor(params){
 function googleSearchTrends(name, industry){
   return googleTrends.trendData([name, industry])
     .then(function(results){
-      // console.log("Here are your google trend results!", results);
-      // console.log('got google trends data')
       return {name: results[0], industry: results[1]};
     })
     .catch(function(err){
-      console.log("error getting Google Trends data", err.message);
+      console.error("error getting Google Trends data", err.message);
       //returning empty data in case request gets blocked
       return {err: err.message};
     });

@@ -562,3 +562,9 @@ var phoneCodes = {
   "ZM": "+260",
   "ZW": "+263"
 }
+
+module.exports = {
+  phoneCodes, 
+  countryNameToIsoCode, 
+  stateAbrevs
+}
