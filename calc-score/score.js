@@ -52,10 +52,6 @@ function calcApiScores(businessInfo){
       console.error('error transforming scores', err.message);
     });
 }
-calcApiScores(test.bondSt)
-.then(function(res){
-  console.log(res)
-})
 
 //returns overall weighted P score
 function sumScores(apiScoreObj){

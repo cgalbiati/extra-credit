@@ -83,7 +83,7 @@ function getBusinessInfo(){
     })
     .then(function(phone){
       var countryPrefix = inputChoices.phoneCodes[business.location.country];
-      business.phone = countryPrefix + phone.replace(NON_DIGIT_RE, '');
+      if (phone.length) business.phone = countryPrefix + phone.replace(NON_DIGIT_RE, '');
       return input.promptAndInput('Enter business industry: ');
     })
     .then(function(industry){

@@ -43,6 +43,7 @@ var yelp = new Yelp({
 //returns business info or undefined of not found in yelp
 //params is {name, phone, address}
 function yelpSearch(params){
+  console.log(params)
   //TODO: compare name/website/location to verify correct business
   var results;
   //serach by phone if available

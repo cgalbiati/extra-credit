@@ -13,4 +13,7 @@ input.getBusinessInfo()
 })
 .catch(function(err){
   console.error('Sorry, there was an error', err.message);
+})
+.then(function(){
+  process.kill(0)
 });

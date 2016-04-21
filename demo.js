@@ -20,7 +20,7 @@ Promise.reduce(businesses, function(nothing, bus){
     })
     .then(function(){
       return new Promise(function(fulfill, reject){
-        console.log('waiting to thwart bot detection...')
+        console.log('waiting to thwart bot detection...');
         setTimeout(function(){
           fulfill('Are you happy Google?');
         }, Math.random() * 12000 + 12000);
